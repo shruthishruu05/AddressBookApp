@@ -1,47 +1,101 @@
 body {
-    margin: 0px;
+    margin: 0;
     height: 100%;
-}
-
-.header {
+    background-color: #f7f7f7;
+  }
+  
+  .header {
     padding: 15px 0;
+    height: 80px;
     background-color: #ffffff;
-}
-
-.header-content {
+  }
+  
+  .header-content {
     display: flex;
     flex-direction: row;
     justify-content: center;
     align-items: center;
-    border: 0px solid blue;
-}
-
-.logo-content {
+    border: 0px solid green;
+  }
+  
+  .logo-content {
     display: flex;
     flex-direction: row;
     align-items: center;
+    border: 0px solid green;
     width: 80%;
-    border: 0px solid blue;
-}
-
-.logo-content-img {
-    border: 0px solid #42515F;
-    padding: 5px;
-    max-height: 50px;
-}
-
-.address-text {
-    text-align: left;
-    font: normal normal bold 22px/25px Montserrat;
+  }
+  
+  .logo-content img {
+    border: 0px solid #42515f;
+    height: 44px;
+    width: 44px;
+  }
+  
+  .logo-content div {
+    margin-left: 12px;
+  }
+  
+  .addr-text {
+    font: normal normal bold 20px/25px Montserrat;
+    font-family: "Montserrat", sans-serif;
     letter-spacing: 0px;
-    color: #008CFF;
+    color: #008cff;
     text-transform: uppercase;
-}
-
-.book-text {
-    color: #42515F;
-}
-
-* {
+  }
+  
+  .addr-book {
+    color: #42515f;
+  }
+  
+  * {
     box-sizing: border-box;
-} 
+  }
+  
+  .form-content {
+    margin-top: 45px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border: 0px solid green;
+  }
+  
+  .form {
+    width: 65%;
+    background: #ffffff 0% 0% no-repeat padding-box;
+    box-shadow: 0px 3px 6px #00000029;
+    border: 1px solid #f5f5f5;
+  }
+  
+  .form-head {
+    display: flex;
+    flex-direction: row;
+    height: 108px;
+    background-color: #008cff;
+    font: normal normal bold 24px/37px Roboto;
+    letter-spacing: 0px;
+    text-transform: capitalize;
+    opacity: 1;
+  }
+  
+  .form-head-title {
+    flex-grow: 1;
+    text-align: center;
+    text-transform: uppercase;
+    color: #ffffff;
+    font: normal normal normal 28px/37px Roboto;
+    align-self: center;
+    margin-left: 55px;
+  }
+  
+  .close-button {
+    width: 44px;
+    height: 44px;
+    align-self: center;
+    justify-content: center;
+    margin-right: 55px;
+  }
+  
+  .close-button:hover {
+    cursor: pointer;
+  }
