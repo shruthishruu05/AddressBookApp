@@ -51,4 +51,9 @@ class address {
     set pincode(pincode) {
       this._pincode = pincode;
     }
+
+    toString() {
+        return ( "id=" +this.id +", name=" +this.name +", phone=" +this.phone +", address=" +this.address +", city=" +this.city +", state=" + this.state +", pincode=" +this.pincode
+        );
+    }
   }
