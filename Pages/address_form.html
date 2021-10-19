@@ -26,6 +26,54 @@
           <h1 class="form-head-title">Person Address Form</h1>
           <img src="../assets/Cancel.png" class="close-button" />
         </div>
+        <div class="row-content">
+            <label class="label text" for="name">Full Name</label>
+            <input class="input" type="text" id="name" name="name" placeholder="Enter the full name"  required />
+            <error-output class="text-error" for="text"></error-output>
+          </div>
+          <div class="row-content">
+            <label class="label text" for="profile">Phone Number</label>
+            <input class="input" type="tel" id="tel" name="phone" placeholder="Enter the phone number" required />
+          </div>
+          <div class="row-content">
+            <div class="text-row">
+              <label class="label text" for="notes">Notes</label>
+              <textarea
+                id="notes"
+                class="input"
+                name="Notes"
+                placeholder=""
+                style="height: 100px"
+              ></textarea>
+            </div>
+          </div>
+          <div class="row-content location-row">
+            <div>
+              <label class="label text" for="city">City</label>
+              <select id="city" name="City">
+                <option value="Bangalore">Bangalore</option>
+                <option value="Chennai">Hyderabad</option>
+                <option value="Hyderabad">Chennai</option>
+                <option value = "Mumbai">Mumbai</option>
+                <option value="Kolkatta">Kolkata</option>
+              </select>
+            </div>
+            <div>
+              <label class="label text" for="state">State</label>
+              <select id="state" name="State">
+                <option value="Karnataka">Karnataka</option>
+                <option value="Telengana">Telangana</option>
+                <option value="Tamil Nadu">Tamil Nadu</option>
+                <option value="Maharastra">Maharastra</option>
+                <option value="West-Bengal">West-Bengal</option>
+
+              </select>
+            </div>
+            <div>
+              <label class="label text" for="zip">Zipcode</label>
+              <input class="input" type="number" id="zip" name="zip" placeholder="Enter the zip" required />
+            </div>
+          </div>
       </form>
     </div>
   </body>
