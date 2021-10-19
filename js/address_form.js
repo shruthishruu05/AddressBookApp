@@ -1,17 +1,23 @@
 let contactObj = {};
 
 document.addEventListener("DOMContentLoaded", (event) => {
-  const name = document.getElementById("name");
-  const nameError = document.querySelector(".text-error");
-  name.addEventListener("input", () => {
-    try {
-      validateName(name.value);
-      nameError.textContent = "";
-    } catch (e) {
-      nameError.textContent = e;
-    }
+  const name = document.querySelector('#name');
+  const textError = document.querySelector('.text-error');
+  name.addEventListener('input', function() {
+      if(name.value.length == 0){
+          textError.textContent = "";
+          return;
+      }
+      try{
+          (new Address()).name = name.value;
+          textError.textContent = "";
+      } 
+      catch(e) {
+          textError.textContent = e;
+      }
   });
-
+  
+  
   const phone = document.getElementById("tel");
   const phoneError = document.querySelector(".phone-error");
   phone.addEventListener("input", () => {
@@ -35,10 +41,7 @@ document.addEventListener("DOMContentLoaded", (event) => {
   });
 });
 
-const validateName = (name) => {
-  let nameRegex = RegExp("^[A-Z][a-zA-Z]{2}[a-zA-Z\\s]*$");
-  if (!nameRegex.test(name)) throw "Name is incorrect";
-};
+
 
 const validateAddress = (address) => {
   address += " ";
@@ -58,8 +61,13 @@ const submitForm = (e) => {
   };
   
   const resetForm = () => {
-    console.log("Form Reset");
-  };
+    setValue('#name','');
+    setValue('#phone','');
+    setValue('#address','');
+    setValue('#city','');
+    setValue('#state','');
+    setValue('#pincode','');
+}
   
   const setContactObject = () => {
     contactObj._id = new Date().getTime();
@@ -80,6 +88,7 @@ const submitForm = (e) => {
       contactList = [contactObj];
     }
     localStorage.setItem("ContactList", JSON.stringify(contactList));
+    window.location.replace(site_properties.home_page);
   };
   
   const getInputValue = (selector) => {
