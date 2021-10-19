@@ -99,3 +99,67 @@ body {
   .close-button:hover {
     cursor: pointer;
   }
+  
+  .row-content {
+    display: flex;
+    flex-direction: column;
+    margin-top: 20px;
+    padding: 0px 100px;
+    border: 0px solid green;
+  }
+  
+  .label {
+    min-width: 140px;
+  }
+  
+  label {
+    padding: 12px 12px 12px 0;
+    display: inline-block;
+  }
+  
+  .text {
+    font-size: 18px;
+    color: #42515f;
+    opacity: 1;
+    font-family: Roboto;
+  }
+  
+  .input {
+    width: 100%;
+    padding: 12px;
+    border: 1px solid #bdbdbd;
+    border-radius: 4px;
+    resize: vertical;
+  }
+  
+  select {
+    padding: 12px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    resize: vertical;
+    font: normal normal normal 16px Roboto;
+    letter-spacing: 0px;
+    color: #42515f;
+    background-color: transparent;
+  }
+  
+  .location-row {
+    display: flex;
+    flex-direction: row;
+    margin-bottom: 55px;
+  }
+  
+  .location-row div {
+    flex-grow: 1;
+    display: flex;
+    flex-direction: column;
+  }
+  
+  .location-row div:nth-of-type(2) {
+    margin: 0px 25px;
+  }
+  
+  .location-row input {
+    box-sizing: border-box;
+    font-size: 16px;
+  }
