@@ -34,17 +34,13 @@
           <div class="row-content">
             <label class="label text" for="profile">Phone Number</label>
             <input class="input" type="tel" id="tel" name="phone" placeholder="Enter the phone number" required />
-          </div>
+            <error-output class="phone-error" for="tel"></error-output>
+         </div>
           <div class="row-content">
             <div class="text-row">
-              <label class="label text" for="notes">Notes</label>
-              <textarea
-                id="notes"
-                class="input"
-                name="Notes"
-                placeholder=""
-                style="height: 100px"
-              ></textarea>
+              <label class="label text" for="notes">Address</label>
+              <textarea id="address" class="input" name="Notes" placeholder="" style="height: 100px"></textarea>
+              <error-output class="address-error" for="address"></error-output>
             </div>
           </div>
           <div class="row-content location-row">
@@ -76,5 +72,6 @@
           </div>
       </form>
     </div>
+    <script src ="../js/address_form.js"></script>
   </body>
 </html>
