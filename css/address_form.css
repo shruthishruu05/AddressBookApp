@@ -163,3 +163,9 @@ body {
     box-sizing: border-box;
     font-size: 16px;
   }
+  error-output {
+    margin-left: 10px;
+    font-size: 15px;
+    font-style: italic;
+    color: red;
+}
