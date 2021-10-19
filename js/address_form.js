@@ -52,16 +52,38 @@ const validatePhone = (phone) => {
 };
 
 const submitForm = (e) => {
-  console.log("Form Submitted");
-};
-
-const resetForm = () => {
-  console.log("Form Reset");
-};
-
-const getInputValue = (selector) => {
-  let value = document.querySelector(selector).value;
-  return value;
-};
-
+    e.preventDefault();
+    setContactObject();
+    createAndUpdateStorage();
+  };
+  
+  const resetForm = () => {
+    console.log("Form Reset");
+  };
+  
+  const setContactObject = () => {
+    contactObj._id = new Date().getTime();
+    contactObj._name = getInputValue("#name");
+    contactObj._address = getInputValue("#address");
+    contactObj._phone = getInputValue("#tel");
+    contactObj._city = getInputValue("#city");
+    contactObj._state = getInputValue("#state");
+    contactObj._pincode = getInputValue("#zip");
+  };
+  
+  const createAndUpdateStorage = () => {
+    let contactList = JSON.parse(localStorage.getItem("ContactList"));
+  
+    if (contactList) {
+      contactList.push(contactObj);
+    } else {
+      contactList = [contactObj];
+    }
+    localStorage.setItem("ContactList", JSON.stringify(contactList));
+  };
+  
+  const getInputValue = (selector) => {
+    let value = document.querySelector(selector).value;
+    return value;
+  };
 
