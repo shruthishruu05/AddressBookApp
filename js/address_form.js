@@ -1,5 +1,5 @@
 let contactObj = {};
-
+let isUpdate = false;
 document.addEventListener("DOMContentLoaded", (event) => {
   const name = document.querySelector('#name');
   const textError = document.querySelector('.text-error');
@@ -39,9 +39,30 @@ document.addEventListener("DOMContentLoaded", (event) => {
       addressError.textContent = e;
     }
   });
+  checkForUpdate();
 });
 
+const checkForUpdate = () => {
+  const contactJson = localStorage.getItem("editContact");
+  isUpdate = contactJson ? true : false;
+  if (!isUpdate) return;
+  contactObj = JSON.parse(contactJson);
+  setForm();
+};
 
+const setForm = () => {
+  setValue("#name", contactObj.name);
+  setValue("#tel", contactObj.phone);
+  setValue("#address", contactObj.address);
+  setValue("#city", contactObj.city);
+  setValue("#state", contactObj.state);
+  setValue("#zip", contactObj.pincode);
+};
+
+const setValue = (id, value) => {
+  const element = document.querySelector(id);
+  element.value = value;
+};
 
 const validateAddress = (address) => {
   address += " ";
@@ -70,20 +91,26 @@ const submitForm = (e) => {
 }
   
   const setContactObject = () => {
-    contactObj._id = new Date().getTime();
-    contactObj._name = getInputValue("#name");
-    contactObj._address = getInputValue("#address");
-    contactObj._phone = getInputValue("#tel");
-    contactObj._city = getInputValue("#city");
-    contactObj._state = getInputValue("#state");
-    contactObj._pincode = getInputValue("#zip");
+    if(!isUpdate) contactObj.id = new Date().getTime();
+    contactObj.name = getInputValue("#name");
+    contactObj.address = getInputValue("#address");
+    contactObj.phone = getInputValue("#tel");
+    contactObj.city = getInputValue("#city");
+    contactObj.state = getInputValue("#state");
+    contactObj.pincode = getInputValue("#zip");
+    // alert(contactList.toString());
   };
   
   const createAndUpdateStorage = () => {
     let contactList = JSON.parse(localStorage.getItem("ContactList"));
   
     if (contactList) {
-      contactList.push(contactObj);
+      if (isUpdate) {
+        const index = contactList.map((data) => data.id).indexOf(contactObj.id);
+        contactList.splice(index, 1, contactObj);
+      } else {
+        contactList.push(contactObj);
+      }
     } else {
       contactList = [contactObj];
     }
