@@ -52,7 +52,7 @@ const createInnerHtml = () => {
           <td>${contactData.pincode}</td>
           <td>${contactData.phone}</td>
           <td>
-          <img id="${contactData.id}" onclick="remove(this)" alt="delete" src="../assets/delete.svg">
+          <img id="${contactData.id}" onclick="remove(this)" alt="delete" src="../assets/delete.svg">&nbsp;&nbsp;&nbsp;&nbsp;
           <img id="${contactData.id}" alt="edit" onclick="update(this)" src="../assets/edit.svg">
           </td>
           </tr>
@@ -61,4 +61,11 @@ const createInnerHtml = () => {
   }
   document.querySelector("#table-display").innerHTML = innerHtml;
 };
+
+const update = (node) => {
+    let contactData = contactList.find((data) => data.id == node.id);
+    if (!contactData) return;
+    localStorage.setItem("editContact", JSON.stringify(contactData));
+    window.location.replace(site_properties.add_contact_page);
+  };
 
