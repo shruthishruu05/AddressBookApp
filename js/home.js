@@ -11,6 +11,21 @@ const getContactDataFromStorage = () => {
     ? JSON.parse(localStorage.getItem("ContactList"))
     : [];
 };
+
+const remove = (node) => {
+    let contactData = contactList.find(
+      (contactPerson) => contactPerson.id == node.id
+    );
+    if (!contactData) return;
+    const index = contactList
+      .map((contactPerson) => contactPerson.id)
+      .indexOf(contactData.id);
+    contactList.splice(index, 1);
+    localStorage.setItem("ContactList", JSON.stringify(contactList));
+    document.querySelector(".addr-count").textContent = contactList.length;
+    createInnerHtml();
+  };
+  
 const createInnerHtml = () => {
   const headerHtml = `
   <thead>
