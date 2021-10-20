@@ -1,41 +1,60 @@
 let contactList;
 window.addEventListener("DOMContentLoaded", (event) => {
-  contactList = getContactDataFromStorage();
-  document.querySelector(".addr-count").textContent = contactList.length;
-  createInnerHtml();
-  localStorage.removeItem("editContact");
+  if (site_properties.use_local_storage) {
+    getContactDataFromStorage();
+  } else {
+    getContactDataFromServer();
+  }
 });
 
 const getContactDataFromStorage = () => {
-  return localStorage.getItem("ContactList")
+  contactList = localStorage.getItem("ContactList")
     ? JSON.parse(localStorage.getItem("ContactList"))
     : [];
+  processContactDataResponse();
 };
 
-const remove = (node) => {
-    let contactData = contactList.find(
-      (contactPerson) => contactPerson.id == node.id
-    );
-    if (!contactData) return;
-    const index = contactList
-      .map((contactPerson) => contactPerson.id)
-      .indexOf(contactData.id);
-    contactList.splice(index, 1);
-    localStorage.setItem("ContactList", JSON.stringify(contactList));
-    document.querySelector(".addr-count").textContent = contactList.length;
-    createInnerHtml();
-  };
-  
+const processContactDataResponse = () => {
+  document.querySelector(".addr-count").textContent = contactList.length;
+  createInnerHtml();
+  localStorage.removeItem("editContact");
+};
+
+const getContactDataFromServer = () => {
+  makeServiceCall("GET", site_properties.server_url, true)
+    .then((responseText) => {
+      contactList = JSON.parse(responseText);
+      processContactDataResponse();
+    })
+    .catch((error) => {
+      console.log("GET Error Status: " + JSON.stringify(error));
+      contactList = [];
+      processContactDataResponse();
+    });
+};
+
 const createInnerHtml = () => {
   const headerHtml = `
   <thead>
             <tr>
-              <th style="width: 20%">Fullname</th>
-              <th style="width: 30%">Address</th>
-              <th style="width: 9%">City</th>
-              <th style="width: 10%">State</th>
-              <th style="width: 9%">Zip Code</th>
-              <th style="width: 12%">Phone Number</th>
+              <th style="width: 20%">
+                Fullname
+              </th>
+              <th style="width: 30%">
+                Address
+              </th>
+              <th style="width: 9%">
+                City
+              </th>
+              <th style="width: 10%">
+                State
+              </th>
+              <th style="width: 9%">
+                Zip Code
+              </th>
+              <th style="width: 12%">
+                Phone Number
+              </th>
               <th></th>
             </th>
           </thead>`;
@@ -63,9 +82,34 @@ const createInnerHtml = () => {
 };
 
 const update = (node) => {
-    let contactData = contactList.find((data) => data.id == node.id);
-    if (!contactData) return;
-    localStorage.setItem("editContact", JSON.stringify(contactData));
-    window.location.replace(site_properties.add_contact_page);
-  };
+  let contactData = contactList.find((data) => data.id == node.id);
+  if (!contactData) return;
+  localStorage.setItem("editContact", JSON.stringify(contactData));
+  window.location.replace(site_properties.add_contact_page);
+};
 
+const remove = (node) => {
+  let contactData = contactList.find(
+    (contactPerson) => contactPerson.id == node.id
+  );
+  if (!contactData) return;
+  const index = contactList
+    .map((contactPerson) => contactPerson.id)
+    .indexOf(contactData.id);
+  contactList.splice(index, 1);
+  if (site_properties.use_local_storage) {
+    localStorage.setItem("ContactList", JSON.stringify(contactList));
+    document.querySelector(".addr-count").textContent = contactList.length;
+    createInnerHtml();
+  } else {
+    const deleteURL = site_properties.server_url + contactData.id.toString();
+    makeServiceCall("DELETE", deleteURL, false)
+      .then((responseText) => {
+        document.querySelector(".addr-count").textContent = contactList.length;
+        createInnerHtml();
+      })
+      .catch((error) => {
+        console.log("DELETE error status: " + JSON.stringify(error));
+      });
+  }
+};
