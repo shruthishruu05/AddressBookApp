@@ -3,6 +3,11 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <link
+      href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100;0,200;0,300;0,400;0,600;1,500&display=swap"
+      ref="stylesheet"
+    />
+    <link href="https://fonts.googleapis.com/css2?family=Lato:wght@300;400;700;900&display=swap" rel="stylesheet">
+    <link
       href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;600&display=swap"
       rel="stylesheet"
     />
@@ -30,11 +35,57 @@
         >
       </div>
       <div class="table-main">
-        <table id="table-display" class="table"></table>
+        <table id="table-display" class="table">
+          <thead>
+            <tr>
+              <th style="width: 20%">Fullname</th>
+              <th style="width: 30%">Address</th>
+              <th style="width: 9%">City</th>
+              <th style="width: 10%">State</th>
+              <th style="width: 9%">Zip Code</th>
+              <th style="width: 12%">Phone Number</th>
+              <th></th>
+            </th>
+          </thead>
+          <tbody>
+              <tr>
+                  <td>Shruthi M</td>
+                  <td>Btm Layout</td>
+                  <td>Bangalore</td>
+                  <td>Karnataka</td>
+                  <td>560076</td>
+                  <td>9110884694</td>
+                  <td><div><img onclick="remove(this)" alt="delete" src="../assets/delete.svg">
+                  <img alt="edit" onclick="update(this)" src="../assets/edit.svg"></div></td>
+              </tr>
+              <tr>
+                <td>Ananya KY</td>
+                <td>Rajaji Nagar</td>
+                <td>Bangalore</td>
+                <td>Karnataka</td>
+                <td>560070</td>
+                <td>9535082363</td>
+                <td><div><img onclick="remove(this)" alt="delete" src="../assets/delete.svg">
+                <img alt="edit" onclick="update(this)" src="../assets/edit.svg"></div></td>
+            </tr>
+            <tr>
+              <td>Mahesh Kumar</td>
+              <td>Rajaji Nagar</td>
+              <td>Bangalore</td>
+              <td>Karnataka</td>
+              <td>560080</td>
+              <td>7899387072</td>
+              <td><div><img onclick="remove(this)" alt="delete" src="../assets/delete.svg">
+              <img alt="edit" onclick="update(this)" src="../assets/edit.svg"></div></td>
+          </tr>
+          </tbody>
+        </table>
       </div>
     </div>
-    <script src="../js/Contact.js"></script>
+
+    <script src="../js/address_form.js"></script>
     <script src="../js/site_properties.js"></script>
     <script src="../js/home.js"></script>
+    <script src="../Pages/home.html"></script>
   </body>
 </html>
