@@ -1,3 +1,3 @@
 let site_properties = {
-    home_page: "../pages/home.html",
+    home_page: "../Pages/home.html",
   };
