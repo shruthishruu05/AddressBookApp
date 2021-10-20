@@ -33,28 +33,24 @@ const getContactDataFromServer = () => {
     });
 };
 
+const update = (node) => {
+  let contactData = contactList.find((data) => data.id == node.id);
+  if (!contactData) return;
+  localStorage.setItem("editContact", JSON.stringify(contactData));
+  window.location.replace(site_properties.add_contact_page);
+};
+
+
 const createInnerHtml = () => {
   const headerHtml = `
   <thead>
             <tr>
-              <th style="width: 20%">
-                Fullname
-              </th>
-              <th style="width: 30%">
-                Address
-              </th>
-              <th style="width: 9%">
-                City
-              </th>
-              <th style="width: 10%">
-                State
-              </th>
-              <th style="width: 9%">
-                Zip Code
-              </th>
-              <th style="width: 12%">
-                Phone Number
-              </th>
+              <th style="width: 20%">Fullname</th>
+              <th style="width: 30%">Address</th>
+              <th style="width: 9%">City</th>
+              <th style="width: 10%">State</th>
+              <th style="width: 9%">Zip Code</th>
+              <th style="width: 12%">Phone Number</th>
               <th></th>
             </th>
           </thead>`;
@@ -79,13 +75,6 @@ const createInnerHtml = () => {
     }
   }
   document.querySelector("#table-display").innerHTML = innerHtml;
-};
-
-const update = (node) => {
-  let contactData = contactList.find((data) => data.id == node.id);
-  if (!contactData) return;
-  localStorage.setItem("editContact", JSON.stringify(contactData));
-  window.location.replace(site_properties.add_contact_page);
 };
 
 const remove = (node) => {
